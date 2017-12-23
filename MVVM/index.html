@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>MVVM</title>
+	<style type="text/css">
+	.child {
+		display: block;
+	}
+	.vmClass {
+		color: red;
+	}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<input type="text" v-model="str">
+		<input type="text" v-model="child.xin">
+		{{str}}<br>
+		<span v-text="child.xin" class="childClass" v-class="vmClass"></span>
+		<input type="text" v-model="msg">
+		<p v-class="vmClass">{{msg}}</p>
+		<button v-on:click="sayHi">点击</button>
+	</div>
+	<script src="./observer.js"></script>
+	<script src="./watcher.js"></script>
+	<script src="./compile.js"></script>
+	<script src="./main.js"></script>
+	<script>
+		var vm = new MVVM({
+			el: '#app',
+			data: {
+				str: '',
+				child: {
+					xin: ''
+				},
+				msg: 'hello',
+				vmClass: ''
+			},
+			methods: {
+				sayHi: function() {
+					this.vmClass = 'vmClass'
+					this.msg = 'hi everyBody'
+				}
+			}
+		})
+	</script>
+</body>
+</html>
